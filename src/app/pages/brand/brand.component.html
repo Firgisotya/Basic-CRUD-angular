@@ -1,0 +1,51 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <div class="row">
+            <div class="col-6">
+              <h6>Brand table</h6>
+            </div>
+            <div class="col-6 text-end">
+              <a routerLink="" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i>
+                Create Brand
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th>Brand Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of brand">
+                  <td>
+                    <div class="d-flex px-2">
+                      <div>
+                      </div>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">{{ item.name }}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
