@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,10 +14,19 @@ import { CategoryComponent } from './pages/category/category.component';
 import { ProductComponent } from './pages/product/product.component';
 import { TransaksiComponent } from './pages/transaksi/transaksi.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CreateComponent } from './pages/brand/create/create.component';
-import { EditComponent } from './pages/brand/edit/edit.component';
-import { ShowComponent } from './pages/brand/show/show.component';
-import { BrandRoutingModule } from './pages/brand/brand-routing.module';
+import { CreateBrandComponent } from './pages/brand/create/create.component';
+import { EditBrandComponent } from './pages/brand/edit/edit.component';
+import { CreateCategoryComponent } from './pages/category/create/create.component';
+import { EditCategoryComponent } from './pages/category/edit/edit.component';
+import { CreateProductComponent } from './pages/product/create/create.component';
+import { EditProductComponent } from './pages/product/edit/edit.component';
+import { CreateTransaksiComponent } from './pages/transaksi/create/create.component';
+import { EditTransaksiComponent } from './pages/transaksi/edit/edit.component';
+import { UserComponent } from './pages/user/user.component';
+import { ShowProductComponent } from './pages/product/show/show.component';
+import { ShowTransaksiComponent } from './pages/transaksi/show/show.component';
+import { CreateUserComponent } from './pages/user/create/create.component';
+import { EditUserComponent } from './pages/user/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +39,20 @@ import { BrandRoutingModule } from './pages/brand/brand-routing.module';
     ProductComponent,
     TransaksiComponent,
     DashboardComponent,
-    CreateComponent,
-    EditComponent,
-    ShowComponent
+    CreateBrandComponent,
+    EditBrandComponent,
+    CreateCategoryComponent,
+    EditCategoryComponent,
+    CreateProductComponent,
+    EditProductComponent,
+    ShowProductComponent,
+    CreateTransaksiComponent,
+    EditTransaksiComponent,
+    ShowTransaksiComponent,
+    UserComponent,
+    CreateUserComponent,
+    EditUserComponent
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +60,7 @@ import { BrandRoutingModule } from './pages/brand/brand-routing.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrandRoutingModule
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]

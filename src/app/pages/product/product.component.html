@@ -8,7 +8,7 @@
               <h6>Product table</h6>
             </div>
             <div class="col-6 text-end">
-              <a routerLink="" class="btn btn-primary">
+              <a routerLink="create" class="btn btn-primary">
                 <i class="fa-solid fa-plus"></i>
                 Create Product
               </a>
@@ -48,9 +48,16 @@
                     <span class="text-secondary text-xs font-weight-bold">{{ item.price }}</span>
                   </td>
                   <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <a routerLink="/product/edit/{{ item.id }}}" class="btn btn-warning" data-toggle="tooltip" data-original-title="Edit Product">
+                      <i class="fa-solid fa-pencil"></i>
                       Edit
                     </a>
+
+                    <button  class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete Product"
+                    (click)="deleteProduct(item.id)">
+                      <i class="fa-solid fa-trash"></i>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               </tbody>

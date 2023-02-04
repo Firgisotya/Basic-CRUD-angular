@@ -1,0 +1,62 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <div class="row">
+            <div class="col-6">
+              <h6>Product Create</h6>
+            </div>
+            <div class="col-6 text-end">
+              <a routerLink="/transaksi" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i>
+                Kembali
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body px-0 pt-0 pb-2 ">
+          <div class="table-responsive p-5">
+              <form [formGroup]="form" (submit)="submit()">
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Username</label>
+                      <select class="form-select" formControlName="userId">
+                        <option
+                        *ngFor="let itemUser of tempUser; index as i"
+                        ngValue="{{ i+1 }}">
+                          {{ itemUser.firstName }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Product</label>
+                      <select class="form-select" formControlName="productId">
+                        <option
+                        *ngFor="let itemProduct of tempProduct; index as i"
+                        ngValue="{{ i+1 }}">
+                          {{ itemProduct.name }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Qty</label>
+                      <input type="number" class="form-control" formControlName="qty" id="exampleFormControlInput1" placeholder="Input Qty">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Total</label>
+                      <input type="number" class="form-control" formControlName="total" id="exampleFormControlInput1" placeholder="Input Total">
+                    </div>
+                    <div class="mb-3">
+                      <button class="btn btn-primary"
+                      (click)="successAlert()">
+                      Add
+                    </button>
+                    </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
