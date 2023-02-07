@@ -40,7 +40,7 @@ export class EditBrandComponent implements OnInit {
     console.log(this.form.value)
     this.appService.updateBrand(this.id, this.form.value).subscribe((data: any) => {
       console.log('Succes Update')
-      // this.router.navigate(['/brand'])
+      this.router.navigate(['/brand'])
     })
   }
 

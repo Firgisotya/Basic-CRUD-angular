@@ -71,7 +71,7 @@ export class AppService {
   storeProduct(data: any){
     return this.http.post(`${this.baseUrl}/product`, data)
   }
-  getProductById(id: any){
+  getProductById(id: number){
     return this.http.get(`${this.baseUrl}/product/${id}`)
   }
   updateProduct(id: any, data: any){
