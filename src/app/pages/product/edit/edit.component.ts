@@ -20,24 +20,38 @@ export class EditProductComponent implements OnInit{
   prod!: Product;
   tempBrand: Brand[] = [];
   tempCategory: Category[] = [];
+  brandSelected: any[] = [];
+  categorySelected: any[] = [];
+  brandValue: any;
+  categoryValue: any;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.appService.getProductById(this.id).subscribe((data: any) => {
       this.prod = data.product;
-      console.log("INI PROD")
-      console.log(this.prod)
 
       this.appService.getBrand().subscribe((data: any) => {
         this.tempBrand = data.brands;
-        console.log("INI BRAND")
-        console.log(this.tempBrand)
+        this.brandSelected = this.tempBrand.filter((brand: any) => {
+        return brand.id == this.prod.brandId
       })
+      this.brandValue = this.brandSelected[0].name
+      console.log("INI BRAND SELECTED")
+      console.log(this.brandValue)
+      })
+
+
+
+
+
 
       this.appService.getCategory().subscribe((data: any) => {
         this.tempCategory = data.categories;
-        console.log("INI CATEGORY")
-        console.log(this.tempCategory)
+        this.categorySelected = this.tempCategory.filter((category: any) => {
+          return category.id == this.prod.categoryId
+        })
+        console.log("INI CATEGORY SELECTED")
+          console.log(this.categorySelected[0].id)
       })
 
       this.form = new FormGroup({

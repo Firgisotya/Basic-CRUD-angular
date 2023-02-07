@@ -9,7 +9,7 @@
               </div>
               <div class="col-6 text-end">
                 <a routerLink="/product" class="btn btn-primary">
-                  <i class="fa-solid fa-plus"></i>
+                  <i class="fa-solid fa-arrow-left"></i>
                   Kembali
                 </a>
               </div>
@@ -18,7 +18,7 @@
           <div class="card-body px-0 pt-0 pb-2 ">
             <div class="table-responsive p-5">
                 <form [formGroup]="form" (submit)="submit()">
-  
+
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Product Name</label>
                         <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" [(ngModel)]="prod.name">
@@ -28,8 +28,9 @@
                         <select class="form-select" formControlName="brandId">
                           <option
                           *ngFor="let itemBrand of tempBrand; index as i"
-                          ngValue="{{ i+1 }}" [selected]="itemBrand.name == prod.Brand.name">
-                             {{ itemBrand.name  }}
+                          [selected]="brandValue == true && itemBrand.name == prod.Brand.name"
+                          ngValue="{{ i+1 }}" >
+                            {{ itemBrand.name }}
                           </option>
                         </select>
                       </div>
@@ -39,7 +40,7 @@
                           <option
                           *ngFor="let itemCategory of tempCategory; index as i"
                           ngValue="{{ i+1 }}" [selected]="itemCategory.name == prod.Category.name">
-                             {{ prod.Category.name }}
+                            {{ itemCategory.name }} {{ prod.Category.name }}
                           </option>
                         </select>
                       </div>

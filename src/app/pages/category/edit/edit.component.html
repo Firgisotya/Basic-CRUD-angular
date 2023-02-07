@@ -9,7 +9,7 @@
               </div>
               <div class="col-6 text-end">
                 <a routerLink="/category" class="btn btn-primary">
-                  <i class="fa-solid fa-plus"></i>
+                  <i class="fa-solid fa-arrow-left"></i>
                   Kembali
                 </a>
               </div>
@@ -18,7 +18,7 @@
           <div class="card-body px-0 pt-0 pb-2 ">
             <div class="table-responsive p-5">
                 <form [formGroup]="form" (submit)="submit()">
-  
+
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Category Name</label>
                         <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" [(ngModel)]="cat.name">
@@ -36,5 +36,4 @@
       </div>
     </div>
   </div>
-  
-  
+

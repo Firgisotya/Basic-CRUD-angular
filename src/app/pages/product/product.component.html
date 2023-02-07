@@ -21,9 +21,6 @@
               <thead>
                 <tr>
                   <th>Product Name</th>
-                  <th>Brand Name</th>
-                  <th>Category Name</th>
-                  <th>Price</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -38,19 +35,15 @@
                       </div>
                     </div>
                   </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ item.Brand.name }}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ item.Category.name }}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ item.price }}</span>
-                  </td>
                   <td class="align-middle">
                     <a routerLink="/product/edit/{{ item.id }}}" class="btn btn-warning" data-toggle="tooltip" data-original-title="Edit Product">
                       <i class="fa-solid fa-pencil"></i>
                       Edit
+                    </a>
+
+                    <a routerLink="/product/show/{{ item.id }}}" class="btn btn-info" data-toggle="tooltip" data-original-title="Show Product">
+                      <i class="fa-solid fa-eye"></i>
+                      Show
                     </a>
 
                     <button  class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete Product"
