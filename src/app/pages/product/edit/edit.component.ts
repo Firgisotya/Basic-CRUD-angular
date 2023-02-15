@@ -20,47 +20,32 @@ export class EditProductComponent implements OnInit{
   prod!: Product;
   tempBrand: Brand[] = [];
   tempCategory: Category[] = [];
-  brandSelected: any[] = [];
-  categorySelected: any[] = [];
-  brandValue: any;
-  categoryValue: any;
+  name: any;
+  brandId: any;
+  categoryId: any;
+  price: any;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.appService.getProductById(this.id).subscribe((data: any) => {
-      this.prod = data.product;
-
       this.appService.getBrand().subscribe((data: any) => {
         this.tempBrand = data.brands;
-        this.brandSelected = this.tempBrand.filter((brand: any) => {
-        return brand.id == this.prod.brandId
       })
-      this.brandValue = this.brandSelected[0].name
-      console.log("INI BRAND SELECTED")
-      console.log(this.brandValue)
-      })
-
-
-
-
-
 
       this.appService.getCategory().subscribe((data: any) => {
         this.tempCategory = data.categories;
-        this.categorySelected = this.tempCategory.filter((category: any) => {
-          return category.id == this.prod.categoryId
+      })
+
+      this.appService.getProductById(this.id).subscribe((data: any) => {
+        this.name = data.product.name;
+        this.brandId = data.product.brandId;
+        this.categoryId = data.product.categoryId;
+        this.price = data.product.price;
+        this.form = new FormGroup({
+          name: new FormControl(this.prod.name, [Validators.required]),
+          brandId: new FormControl(this.prod.brandId, [Validators.required]),
+          categoryId: new FormControl(this.prod.categoryId, [Validators.required]),
+          price: new FormControl(this.prod.price, [Validators.required]),
         })
-        console.log("INI CATEGORY SELECTED")
-          console.log(this.categorySelected[0].id)
-      })
-
-      this.form = new FormGroup({
-        name: new FormControl(this.prod.name, [Validators.required]),
-        brandId: new FormControl(this.prod.brandId, [Validators.required]),
-        categoryId: new FormControl(this.prod.categoryId, [Validators.required]),
-        price: new FormControl(this.prod.price, [Validators.required]),
-      })
-
   })
   }
   get f(){

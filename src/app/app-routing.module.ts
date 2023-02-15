@@ -20,7 +20,7 @@ import { EditUserComponent } from './pages/user/edit/edit.component';
 import { UserComponent } from './pages/user/user.component';
 
 const routes: Routes = [
-  { path:'dashboard', component: DashboardComponent },
+  { path:'', component: DashboardComponent },
   { path:'user', component: UserComponent },
   { path:'brand', component: BrandComponent },
   { path:'category', component: CategoryComponent },

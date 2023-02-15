@@ -21,26 +21,24 @@
 
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" [(ngModel)]="prod.name">
+                        <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" [(ngModel)]="name">
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Brand</label>
-                        <select class="form-select" formControlName="brandId">
+                        <select class="form-select" formControlName="brandId" [(ngModel)]="brandId">
                           <option
-                          *ngFor="let itemBrand of tempBrand; index as i"
-                          [selected]="brandValue == true && itemBrand.name == prod.Brand.name"
-                          ngValue="{{ i+1 }}" >
+                          value="{{ itemBrand.name }}"
+                          *ngFor="let itemBrand of tempBrand; index as i">
                             {{ itemBrand.name }}
                           </option>
                         </select>
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Category</label>
-                        <select class="form-select" formControlName="categoryId">
+                        <select class="form-select" formControlName="categoryId" [(ngModel)]="categoryId">
                           <option
-                          *ngFor="let itemCategory of tempCategory; index as i"
-                          ngValue="{{ i+1 }}" [selected]="itemCategory.name == prod.Category.name">
-                            {{ itemCategory.name }} {{ prod.Category.name }}
+                          *ngFor="let itemCategory of tempCategory; index as i">
+                            {{ itemCategory.name }}
                           </option>
                         </select>
                       </div>

@@ -12,7 +12,8 @@ export interface Product {
 }
 
 export interface Brand {
-    name: string;
+id: any;
+name: string;
 }
 
 // Converts JSON strings to/from your types
