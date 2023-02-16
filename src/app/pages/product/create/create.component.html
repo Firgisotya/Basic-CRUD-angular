@@ -48,6 +48,14 @@
                       <input type="number" class="form-control" formControlName="price" id="exampleFormControlInput1" placeholder="Input Price">
                     </div>
                     <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Image</label>
+                      <input type="file" class="form-control" formControlName="price" id="image"
+                      formControlName="image" (change)="onFileChange($event)">
+                    </div>
+
+                    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width: 300px;" />
+
+                    <div class="mb-3">
                       <button class="btn btn-primary"
                       (click)="successAlert()">
                       Add

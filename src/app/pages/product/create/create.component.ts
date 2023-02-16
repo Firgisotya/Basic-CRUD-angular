@@ -15,6 +15,7 @@ export class CreateProductComponent implements OnInit {
 
   constructor(private appService: AppService, private router: Router) { }
   form!: FormGroup;
+  imageSrc: string = '';
 
   tempBrand: any[] = [];
   tempCategory: any[] = [];
@@ -42,12 +43,30 @@ export class CreateProductComponent implements OnInit {
     brandId: new FormControl('', [Validators.required]),
     categoryId: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required]),
   })
 
 
 }
 
+  onFileChange(event:any){
+    const reader = new FileReader();
+
+    if(event.target.files && event.target.files.length){
+      const [image] = event.target.files;
+      reader.readAsDataURL(image);
+
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        this.form.patchValue({
+          image: reader.result
+        })
+      }
+    }
+  }
+
   submit(){
+    console.log(this.form.value);
     this.form.value.brandId = parseInt(this.form.value.brandId);
     this.form.value.categoryId = parseInt(this.form.value.categoryId);
     this.appService.storeProduct(this.form.value).subscribe((res: any) => {
