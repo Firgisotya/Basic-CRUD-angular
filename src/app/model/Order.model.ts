@@ -1,4 +1,4 @@
-export interface Transaksi {
+export interface Order {
   id:        number;
   userId:    number;
   productId: number;
@@ -15,16 +15,16 @@ export interface Product {
 }
 
 export interface User {
-  firstName: string;
+  username: string;
 }
 
 // Converts JSON strings to/from your types
 export class Convert {
-  public static toTransaksi(json: string): Transaksi {
+  public static toOrder(json: string): Order {
       return JSON.parse(json);
   }
 
-  public static transaksiToJson(value: Transaksi): string {
+  public static orderToJson(value: Order): string {
       return JSON.stringify(value);
   }
 }

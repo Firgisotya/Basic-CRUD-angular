@@ -17,7 +17,7 @@
         </div>
         <div class="card-body px-0 pt-0 pb-2 ">
           <div class="table-responsive p-5">
-              <form [formGroup]="form" (submit)="submit()">
+              <form [formGroup]="form" (ngSubmit)="submit()" enctype="multipart/form-data">
 
                   <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Product Name</label>
@@ -49,15 +49,15 @@
                     </div>
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Image</label>
-                      <input type="file" class="form-control" formControlName="price" id="image"
+                      <input type="file" class="form-control" id="image"
                       formControlName="image" (change)="onFileChange($event)">
                     </div>
 
-                    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width: 300px;" />
+                    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width: 400px;" />
 
                     <div class="mb-3">
                       <button class="btn btn-primary"
-                      (click)="successAlert()">
+                      >
                       Add
                     </button>
                     </div>

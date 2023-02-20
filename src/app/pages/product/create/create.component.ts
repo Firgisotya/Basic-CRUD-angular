@@ -16,61 +16,88 @@ export class CreateProductComponent implements OnInit {
   constructor(private appService: AppService, private router: Router) { }
   form!: FormGroup;
   imageSrc: string = '';
+  url = 'http://localhost:5000/images/';
 
   tempBrand: any[] = [];
   tempCategory: any[] = [];
   dataBrand: Brand[] = [];
   dataCategory: Category[] = [];
 
+  linkImage!: File;
 
-  successAlert(){
+
+  successAlert() {
     Swal.fire("Berhasil!", "Berhasil menambahkan data product baru!", "success")
   }
+
 
   ngOnInit(): void {
     //get data brand
     this.appService.getBrand().subscribe((res: any) => {
       this.tempBrand = res.brands;
-  })
+    })
 
-  //get data category
-  this.appService.getCategory().subscribe((res: any) => {
-    this.tempCategory = res.categories;
-  })
+    //get data category
+    this.appService.getCategory().subscribe((res: any) => {
+      this.tempCategory = res.categories;
+    })
 
-  this.form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    brandId: new FormControl('', [Validators.required]),
-    categoryId: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required]),
-  })
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      brandId: new FormControl('', [Validators.required]),
+      categoryId: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      url: new FormControl('', [Validators.required]),
+    })
+
+  }
+
+  onFileChange(event: any) {
+
+    // if(event.target.files.length > 0){
+    //   const image = event.target.files[0];
+    //   this.form.patchValue({
+    //     image: image
+    //   })
+    // }
 
 
-}
 
-  onFileChange(event:any){
+
     const reader = new FileReader();
 
-    if(event.target.files && event.target.files.length){
+    if (event.target.files && event.target.files.length) {
       const [image] = event.target.files;
       reader.readAsDataURL(image);
 
       reader.onload = () => {
         this.imageSrc = reader.result as string;
         this.form.patchValue({
-          image: reader.result
+          image: reader.result,
+          url: reader.result
         })
       }
     }
+
+    this.linkImage = event.target.files[0];
+    console.log(this.linkImage);
   }
 
-  submit(){
-    console.log(this.form.value);
-    this.form.value.brandId = parseInt(this.form.value.brandId);
-    this.form.value.categoryId = parseInt(this.form.value.categoryId);
-    this.appService.storeProduct(this.form.value).subscribe((res: any) => {
-      this.router.navigate(['/product'])
+  submit() {
+
+    const formData = new FormData();
+    formData.append('name', this.form.value.name);
+    formData.append('brandId', this.form.value.brandId);
+    formData.append('categoryId', this.form.value.categoryId);
+    formData.append('price', this.form.value.price);
+    formData.append('image', this.linkImage, this.linkImage.name);
+    formData.append('url', this.linkImage, this.linkImage.name);
+
+    this.appService.storeProduct(formData).subscribe((res: any) => {
+      console.log(res);
+      this.successAlert();
+      this.router.navigate(['/product']);
     })
 
   }

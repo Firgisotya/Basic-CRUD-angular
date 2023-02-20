@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
-import { Transaksi } from 'src/app/model/Transaksi.model';
+import { Order } from 'src/app/model/Order.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,17 +12,17 @@ export class TransaksiComponent {
 
   constructor(private appService: AppService) { }
 
-    dt: Transaksi[] = [];
+    dt: Order[] = [];
 
     ngOnInit(): void {
-      this.appService.getTransaksi().subscribe((res: any) => {
-        this.dt = res.transaksi;
+      this.appService.getOrder().subscribe((res: any) => {
+        this.dt = res.orders;
       });
     }
 
     deleteTransaksi(id: number){
-      this.appService.deleteTransaksi(id).subscribe((res: any) => {
-        this.dt = res.transaksi;
+      this.appService.deleteOrder(id).subscribe((res: any) => {
+        this.dt = res.orders;
         this.dt.filter((item: any) => item.id !== id);
       })
       this.successAlert();

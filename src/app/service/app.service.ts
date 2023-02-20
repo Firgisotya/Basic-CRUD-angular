@@ -12,19 +12,19 @@ export class AppService {
 
   //User
   getUser() {
-    return this.http.get(`${this.baseUrl}/user`);
+    return this.http.get(`${this.baseUrl}/users`);
   }
   getUserById(id: any){
-    return this.http.get(`${this.baseUrl}/user/${id}`)
+    return this.http.get(`${this.baseUrl}/users/${id}`)
   }
   storeUser(data: any){
-    return this.http.post(`${this.baseUrl}/user`, data)
+    return this.http.post(`${this.baseUrl}/users`, data)
   }
   updateUser(id: any, data: any){
-    return this.http.put(`${this.baseUrl}/user/${id}`, data)
+    return this.http.put(`${this.baseUrl}/users/${id}`, data)
   }
   deleteUser(id: any){
-    return this.http.delete(`${this.baseUrl}/user/${id}`)
+    return this.http.delete(`${this.baseUrl}/users/${id}`)
   }
 
 
@@ -83,18 +83,18 @@ export class AppService {
 
 
 
-  //Transaksi
-  getTransaksi() {
-    return this.http.get(`${this.baseUrl}/transaksi`);
+  //Order
+  getOrder() {
+    return this.http.get(`${this.baseUrl}/order`);
   }
-  storeTransaksi(data: any){
-    return this.http.post(`${this.baseUrl}/transaksi`, data)
+  storeOrder(data: any){
+    return this.http.post(`${this.baseUrl}/order`, data)
   }
-  getTransaksiById(id: any){
-    return this.http.get(`${this.baseUrl}/transaksi/${id}`)
+  getOrderById(id: any){
+    return this.http.get(`${this.baseUrl}/order/${id}`)
   }
-  deleteTransaksi(id: any){
-    return this.http.delete(`${this.baseUrl}/transaksi/${id}`)
+  deleteOrder(id: any){
+    return this.http.delete(`${this.baseUrl}/order/${id}`)
   }
 
 
@@ -103,11 +103,11 @@ export class AppService {
   getQty(){
     return this.http.get(`${this.baseUrl}/transaksi/qty`);
   }
-  filterByMonth(month: any){
+  filterOrderByMonth(month: any){
     console.log('DARI SERVICE')
     console.log(month)
     // mennerima parameter yang digunakan pada body
-    return this.http.post(`${this.baseUrl}/transaksi/filterMonth`, month);
+    return this.http.post(`${this.baseUrl}/filterOrder/month`, month);
   }
 
 

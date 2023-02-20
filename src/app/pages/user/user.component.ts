@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
-import { Product } from 'src/app/model/Product.model';
 import Swal from 'sweetalert2';
 import { User } from 'src/app/model/User.model';
 
@@ -16,13 +15,13 @@ export class UserComponent {
 
     ngOnInit(): void {
       this.appService.getUser().subscribe((res: any) => {
-        this.dt = res.data;
-      });
+        this.dt = res.user;
+      })
     }
 
     deleteUser(id: number){
       this.appService.deleteUser(id).subscribe((res: any) => {
-        this.dt = res.data;
+        this.dt = res.user;
         this.dt.filter((item: any) => item.id !== id);
       })
       this.successAlert();

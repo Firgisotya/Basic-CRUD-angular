@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/model/Category.model';
 import { Brand, Product } from 'src/app/model/Product.model';
-import { User } from 'src/app/model/Transaksi.model';
+import { User } from 'src/app/model/User.model';
 import { AppService } from 'src/app/service/app.service';
 import Swal from 'sweetalert2';
 
@@ -46,7 +46,7 @@ export class CreateTransaksiComponent implements OnInit {
   submit(){
     this.form.value.userId = parseInt(this.form.value.userId);
     this.form.value.productId = parseInt(this.form.value.productId);
-    this.appService.storeTransaksi(this.form.value).subscribe((res: any) => {
+    this.appService.storeOrder(this.form.value).subscribe((res: any) => {
       this.router.navigate(['/transaksi'])
     })
 

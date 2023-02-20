@@ -16,14 +16,14 @@ export class DashboardComponent {
     brand: any = [];
     category: any = [];
     product: any = [];
-    transaksi: any = [];
+    order: any = [];
 
     sumBrand: number = 0;
     sumCategory: number = 0;
     sumProduct: number = 0;
-    sumTransaksi: number = 0;
+    sumOrder: number = 0;
 
-    chartTransaksi: any = [];
+    chartOrder: any = [];
 
      // array of month
     month: any[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -38,6 +38,7 @@ export class DashboardComponent {
     newQty: any = [];
     newProdName: any = [];
     newTotal:any = [];
+    catName: any = [];
 
 
     ngOnInit() {
@@ -53,24 +54,24 @@ export class DashboardComponent {
         this.product = data.products;
         this.sumProduct = this.product.length;
       });
-      this.appService.getTransaksi().subscribe((data: any) => {
-        this.transaksi = data.transaksi;
-        this.sumTransaksi = this.transaksi.length;
+      this.appService.getOrder().subscribe((data: any) => {
+        this.order = data.orders;
+        this.sumOrder = this.order.length;
       });
 
-      this.appService.filterByMonth(this.bulanSelect).subscribe((data: any) => {
-        this.total = data.filter[0]
+      this.appService.filterOrderByMonth(this.bulanSelect).subscribe((data: any) => {
+        this.total = data.filter
         this.total.forEach((element: any) => {
           this.firstName.push(element.username);
           this.prodName.push(element.productName);
           this.qty.push(element.Qty);
         })
-        this.chartTransaksi = new Chart('chartTransaksi', {
+        this.chartOrder = new Chart('chartOrder', {
           type: 'bar',
           data: {
             labels: this.prodName,
             datasets: [{
-              label: 'Transaksi',
+              label: 'Order',
               data: this.qty,
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -137,20 +138,20 @@ export class DashboardComponent {
     // }
 
 
-    this.appService.filterByMonth(this.form.value.month).subscribe((data: any) => {
+    this.appService.filterOrderByMonth(this.form.value.month).subscribe((data: any) => {
       console.log('DATA')
-      console.log(data.filter[0])
-      this.newTotal = data.filter[0]
+      console.log(data.filter)
+      this.newTotal = data.filter
       this.newTotal.forEach((element: any) => {
         this.newProdName.push(element.productName);
         this.newQty.push(element.Qty);
       })
       console.log(this.newProdName)
-      if(this.chartTransaksi != null) {
-        this.chartTransaksi.destroy();
+      if(this.chartOrder != null) {
+        this.chartOrder.destroy();
       }
 
-      this.chartTransaksi = new Chart('chartTransaksi', {
+      this.chartOrder = new Chart('chartOrder', {
         type: 'bar',
         data: {
           labels: this.newProdName,

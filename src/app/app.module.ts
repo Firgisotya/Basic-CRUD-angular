@@ -60,7 +60,7 @@ import { EditUserComponent } from './pages/user/edit/edit.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SweetAlert2Module
+    SweetAlert2Module,
   ],
   providers: [],
   bootstrap: [AppComponent]
