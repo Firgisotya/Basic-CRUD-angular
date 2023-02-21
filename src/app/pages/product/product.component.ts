@@ -14,6 +14,7 @@ export class ProductComponent {
     constructor(private appService: AppService) { }
 
     dt: Product[] = [];
+    url = 'http://localhost:5000/images/';
 
     ngOnInit(): void {
       this.appService.getProducts().subscribe((res: any) => {

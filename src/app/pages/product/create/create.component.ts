@@ -23,7 +23,7 @@ export class CreateProductComponent implements OnInit {
   dataBrand: Brand[] = [];
   dataCategory: Category[] = [];
 
-  linkImage!: File;
+  image!: File;
 
 
   successAlert() {
@@ -80,8 +80,8 @@ export class CreateProductComponent implements OnInit {
       }
     }
 
-    this.linkImage = event.target.files[0];
-    console.log(this.linkImage);
+    this.image = event.target.files[0];
+    console.log(this.image);
   }
 
   submit() {
@@ -91,8 +91,9 @@ export class CreateProductComponent implements OnInit {
     formData.append('brandId', this.form.value.brandId);
     formData.append('categoryId', this.form.value.categoryId);
     formData.append('price', this.form.value.price);
-    formData.append('image', this.linkImage, this.linkImage.name);
-    formData.append('url', this.linkImage, this.linkImage.name);
+    formData.append('image', this.image, this.image.name);
+    formData.append('url', this.url + this.image.name);
+    console.log(this.form.value);
 
     this.appService.storeProduct(formData).subscribe((res: any) => {
       console.log(res);
