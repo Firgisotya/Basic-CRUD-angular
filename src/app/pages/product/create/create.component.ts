@@ -55,16 +55,6 @@ export class CreateProductComponent implements OnInit {
 
   onFileChange(event: any) {
 
-    // if(event.target.files.length > 0){
-    //   const image = event.target.files[0];
-    //   this.form.patchValue({
-    //     image: image
-    //   })
-    // }
-
-
-
-
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {

@@ -21,23 +21,24 @@
 
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" [(ngModel)]="name">
+                        <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" [(ngModel)]="prod.name">
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Brand</label>
-                        <select class="form-select" formControlName="brandId" [(ngModel)]="brandId">
+                        <select class="form-select" formControlName="brandId" [(ngModel)]="prod.brandId">
                           <option
-                          value="{{ itemBrand.name }}"
-                          *ngFor="let itemBrand of tempBrand; index as i">
+                          *ngFor="let itemBrand of tempBrand; index as i"
+                            ngValue="{{ i+1 }}">
                             {{ itemBrand.name }}
                           </option>
                         </select>
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Category</label>
-                        <select class="form-select" formControlName="categoryId" [(ngModel)]="categoryId">
+                        <select class="form-select" formControlName="categoryId" [(ngModel)]="prod.categoryId">
                           <option
-                          *ngFor="let itemCategory of tempCategory; index as i">
+                          *ngFor="let itemCategory of tempCategory; index as i"
+                          ngValue="{{ i+1 }}">
                             {{ itemCategory.name }}
                           </option>
                         </select>
@@ -49,7 +50,7 @@
                       <div class="mb-3">
                         <button class="btn btn-primary"
                         (click)="successAlert()">
-                        Add
+                        Update
                       </button>
                       </div>
                 </form>

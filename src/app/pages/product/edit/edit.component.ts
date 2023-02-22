@@ -20,10 +20,12 @@ export class EditProductComponent implements OnInit{
   prod!: Product;
   tempBrand: Brand[] = [];
   tempCategory: Category[] = [];
-  name: any;
-  brandId: any;
-  categoryId: any;
-  price: any;
+
+  imageSrc: string = '';
+  url = 'http://localhost:5000/images/';
+
+    image!: File;
+
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -36,25 +38,52 @@ export class EditProductComponent implements OnInit{
       })
 
       this.appService.getProductById(this.id).subscribe((data: any) => {
-        this.name = data.product.name;
-        this.brandId = data.product.brandId;
-        this.categoryId = data.product.categoryId;
-        this.price = data.product.price;
-        this.form = new FormGroup({
-          name: new FormControl(this.prod.name, [Validators.required]),
-          brandId: new FormControl(this.prod.brandId, [Validators.required]),
-          categoryId: new FormControl(this.prod.categoryId, [Validators.required]),
-          price: new FormControl(this.prod.price, [Validators.required]),
-        })
+        this.prod = data.product;
   })
-  }
-  get f(){
-    return this.form.controls;
+
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      brandId: new FormControl('', [Validators.required]),
+      categoryId: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      url: new FormControl('', [Validators.required]),
+    })
   }
 
+  onFileChange(event: any) {
+
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [image] = event.target.files;
+      reader.readAsDataURL(image);
+
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        this.form.patchValue({
+          image: reader.result,
+          url: reader.result
+        })
+      }
+    }
+
+    this.image = event.target.files[0];
+    console.log(this.image);
+  }
+  
+
   submit() {
-    console.log(this.form.value)
-    this.appService.updateProduct(this.id, this.form.value).subscribe((data: any) => {
+    const formData = new FormData();
+    formData.append('name', this.form.value.name);
+    formData.append('brandId', this.form.value.brandId);
+    formData.append('categoryId', this.form.value.categoryId);
+    formData.append('price', this.form.value.price);
+    formData.append('image', this.image, this.image.name);
+    formData.append('url', this.url + this.image.name);
+    console.log(this.form.value);
+
+    this.appService.updateProduct(this.id, formData).subscribe((data: any) => {
       console.log('Succes Update')
       this.router.navigate(['/product'])
     })

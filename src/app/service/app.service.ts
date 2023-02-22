@@ -103,11 +103,9 @@ export class AppService {
   getQty(){
     return this.http.get(`${this.baseUrl}/transaksi/qty`);
   }
-  filterOrderByMonth(month: any){
-    console.log('DARI SERVICE')
-    console.log(month)
+  filterOrderByYear(year: any){
     // mennerima parameter yang digunakan pada body
-    return this.http.post(`${this.baseUrl}/filterOrder/month`, month);
+    return this.http.post(`${this.baseUrl}/filterOrder/month` + '?tahun=' + year, year);
   }
 
 
