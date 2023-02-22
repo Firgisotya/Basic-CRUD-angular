@@ -11,13 +11,17 @@ import Chart from 'chart.js/auto';
 })
 export class DashboardComponent {
 
-    constructor(private appService: AppService, private detect: ChangeDetectorRef) { }
+    constructor(private appService: AppService, private detect: ChangeDetectorRef) {
+      const currentYear = new Date().getFullYear();
+      for (let i = 2020; i <= currentYear; i++) {
+        this.tahun_filter.push(i);
+      }
+    }
 
     brand: any = [];
     category: any = [];
     product: any = [];
     order: any = [];
-    selected: any = '2020';
 
     sumBrand: number = 0;
     sumCategory: number = 0;
@@ -27,10 +31,12 @@ export class DashboardComponent {
     chartOrder: any = [];
 
      // array of year
+    tahun_filter: any[] = [];
+    selectedYear: any;
     year: any[] = ["2022","2023"];
     form! : FormGroup;
 
-    yearSelect: any = [];
+    yearSelect: any;
     total: any = [];
     qty: any = [];
     month: any = [];
@@ -55,7 +61,7 @@ export class DashboardComponent {
         this.sumOrder = this.order.length;
       });
 
-      this.appService.filterOrderByYear(this.yearSelect).subscribe((data: any) => {
+      this.appService.filterOrderByYear(this.selectedYear).subscribe((data: any) => {
         this.total = data
         this.qty = this.total.map((item: any) => item.Qty);
         this.month = this.total.map((item: any) => item.bulan);
@@ -103,28 +109,33 @@ export class DashboardComponent {
         })
         })
 
-       
+
 
       }
 
-      filterByYear() {
-        
-        this.yearSelect = this.form.value.year;
-        this.detect.detectChanges();
-        console.log(this.selected);
-        this.appService.filterOrderByYear(this.yearSelect).subscribe((data: any) => {
+      filterByYear(event: Event) {
+        this.selectedYear = (event.target as HTMLInputElement).value;
+        console.log(this.selectedYear);
+        this.appService.filterOrderByYear(this.selectedYear).subscribe((data: any) => {
           this.total = data
+          console.log(this.total);
           this.newQty = this.total.map((item: any) => item.Qty);
           this.newMonth = this.total.map((item: any) => item.bulan);
-          
 
-          
+          console.log(this.newQty);
+          console.log(this.newMonth);
+
+          this.chartOrder.data.labels = this.newMonth;
+          this.chartOrder.data.datasets[0].data = this.newQty;
+          this.chartOrder.update();
+
+
         })
-        
+
       }
 
     };
-    
 
-    
-  
+
+
+
