@@ -105,7 +105,12 @@ export class AppService {
   }
   filterOrderByYear(year: any){
     // mennerima parameter yang digunakan pada body
-    return this.http.post(`${this.baseUrl}/filterOrder/month` + '?tahun=' + year, year);
+    return this.http.post(`${this.baseUrl}/filterOrder/year` + '?tahun=' + year, year);
+  }
+  filterOrderByMonth(month: any){
+    console.log("service");
+    console.log(month);
+    return this.http.post(`${this.baseUrl}/filterOrder/month`, month);
   }
 
 
