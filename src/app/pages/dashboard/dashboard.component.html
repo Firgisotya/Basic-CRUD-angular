@@ -97,14 +97,14 @@
         </div>
         <div class="card-body p-3">
           <div class="chart">
-            <form [formGroup]="form">
+            <form [formGroup]="form" (change)="filterByYear($event)">
               <select  class="form-select"  aria-label="Default select example"
-               formControlName="year">
+               formControlName="year" >
                 <option value="">Select Year</option>
                 <option *ngFor="let item of tahun_filter" [value]="item">{{ item }}</option>
               </select>
             </form>
-            <canvas id="chartOrder" class="chart-canvas" height="200"></canvas>
+            <canvas id="chartByYear" class="chart-canvas" height="200"></canvas>
           </div>
         </div>
       </div>
@@ -166,9 +166,9 @@
         </div>
         <div class="card-body p-3">
           <div class="chart">
-            <form [formGroup]="form">
-              <select  class="form-select"  aria-label="Default select example" formControlName="year"
-              (change)="filterByMonth($event)">
+            <form [formGroup]="filter" (change)="filterByMonth()">
+              <select  class="form-select"  aria-label="Default select example" formControlName="month"
+              >
                 <option value="">Select Month</option>
                 <option *ngFor="let item of bulan_filter; index as i" [value]="i+1">{{ item }}</option>
               </select>
