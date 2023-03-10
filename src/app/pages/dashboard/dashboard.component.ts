@@ -33,7 +33,7 @@ export class DashboardComponent {
     monthOrder: any = [];
 
      // array of year
-    tahun_filter: any[] = ["2022","2023"];
+    tahun_filter: any[] = [];
     selectedYear: any;
     year: any[] = [];
     ttlYear: any[] = [];
@@ -85,11 +85,11 @@ export class DashboardComponent {
           this.qty.push(item.Qty);
           this.month.push(item.bulan);
         })
-        
+
 
         this.yearChart();
 
-        
+
         })
 
         this.form = new FormGroup({
@@ -133,7 +133,7 @@ export class DashboardComponent {
                 return "Invalid month";
             }
           });
-          
+
          this.Chart();
 
         })
@@ -142,18 +142,17 @@ export class DashboardComponent {
         month : new FormControl(''),
       })
 
-      
 
-      
+
+
 
     };
 
-    filterByYear(event: Event) {
-      this.selectedYear = (event.target as HTMLInputElement).value;
-      console.log(this.selectedYear);
+    filterByYear() {
+      console.log(this.form.value);
       this.month = [];
       this.qty = [];
-      this.appService.filterOrderByYear(this.selectedYear).subscribe((data: any) => {
+      this.appService.filterOrderByYear(this.form.value).subscribe((data: any) => {
         this.total = data
         this.total.forEach((item: any) => {
           this.qty.push(item.Qty);
@@ -165,9 +164,9 @@ export class DashboardComponent {
         }
 
         this.yearChart();
-        
 
-        
+
+
 
 
       })
@@ -176,7 +175,7 @@ export class DashboardComponent {
 
     filterByMonth() {
       console.log(this.filter.value);
-      
+
       // console.log(this.selectedMonth);
       this.ttl = [];
       this.mnth = [];
@@ -184,9 +183,9 @@ export class DashboardComponent {
         this.income = data
         console.log("data");
         console.log(this.income);
-        
-        
-        
+
+
+
         this.income.forEach((item: any) => {
           this.ttl.push(item.income);
           this.mnth.push(item.month);
@@ -225,7 +224,7 @@ export class DashboardComponent {
               return "Invalid month";
           }
         });
-        
+
         //   type: 'bar',
         //   data: {
         //     labels: this.newMnth,
@@ -262,15 +261,15 @@ export class DashboardComponent {
         //     }
         //   }
         // });
-        
+
         this.Chart();
-        
+
       })
-      
-      
-      
+
+
+
     }
-    
+
     Chart() {
       this.monthChart = new Chart('monthOrder', {
         type: 'bar',
@@ -321,20 +320,18 @@ export class DashboardComponent {
               label: 'Total Order',
               data: this.qty,
               backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgb(144, 200, 172)',
+                'rgb(115, 169, 173)',
+                'rgb(55, 48, 107)',
+                'rgb(158, 71, 132)',
+                'rgb(255, 172, 172)',
+                'rgb(255, 235, 180)'
               ],
               borderWidth: 1
             }
@@ -343,7 +340,8 @@ export class DashboardComponent {
         options: {
           scales: {
             y: {
-              beginAtZero: true
+              beginAtZero: true,
+              max: 100
             }
           }
         }

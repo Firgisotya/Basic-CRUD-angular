@@ -27,7 +27,9 @@ export class CreateTransaksiComponent implements OnInit {
   ngOnInit(): void {
     //get data user
     this.appService.getUser().subscribe((res: any) => {
-      this.tempUser = res.data;
+      this.tempUser = res.user;
+      console.log(this.tempUser);
+
   })
     //get data product
     this.appService.getProducts().subscribe((res: any) => {
