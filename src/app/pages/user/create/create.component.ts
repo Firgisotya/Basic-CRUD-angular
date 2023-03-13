@@ -23,10 +23,16 @@ export class CreateUserComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.appService.getBank().subscribe((data: any) => {
+      this.users = data;
+      console.log(this.users)
+    })
+
    this.form = new FormGroup({
      firstName: new FormControl('', [Validators.required]),
      lastName: new FormControl('', [Validators.required]),
      email: new FormControl('', [Validators.required]),
+
    })
   }
   submit(){

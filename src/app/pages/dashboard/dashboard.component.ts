@@ -225,7 +225,7 @@ export class DashboardComponent {
           }
         });
 
-        //   type: 'bar',
+        
         //   data: {
         //     labels: this.newMnth,
         //     datasets: [
@@ -272,37 +272,43 @@ export class DashboardComponent {
 
     Chart() {
       this.monthChart = new Chart('monthOrder', {
-        type: 'bar',
-        data: {
-          labels: this.month,
-          datasets: [
-            {
-              label: 'Total Order',
-              data: this.ttl,
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }
-          ]
+          data: {
+            datasets: [
+              {
+                type: 'line',
+                label: 'Target Order',
+                data: [2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                ], 
+                fill: false,},
+              {
+                type: 'bar',
+                label: 'Month Order',
+                data: this.ttl,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgb(144, 200, 172)',
+                  'rgb(115, 169, 173)',
+                  'rgb(55, 48, 107)',
+                  'rgb(158, 71, 132)',
+                  'rgb(255, 172, 172)',
+                  'rgb(255, 235, 180)'
+                ],
+            },
+          ],
+            labels: this.newMnth
         },
         options: {
           scales: {
             y: {
-              beginAtZero: true
+              beginAtZero: true,
+              max: 3000000
             }
           }
         }
@@ -312,12 +318,22 @@ export class DashboardComponent {
 
     yearChart() {
       this.chartByYear = new Chart('chartByYear', {
-        type: 'bar',
         data: {
-          labels: this.month,
           datasets: [
             {
-              label: 'Total Order',
+              type: 'line',
+              label: 'Target Order',
+              data: [300,300,300,300,300,300,300,300,300,300,300,300],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                
+              ],
+              fill: false,
+                 
+            },
+            {
+              type: 'bar',
+              label: 'Month Order',
               data: this.qty,
               backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -333,15 +349,15 @@ export class DashboardComponent {
                 'rgb(255, 172, 172)',
                 'rgb(255, 235, 180)'
               ],
-              borderWidth: 1
-            }
-          ]
-        },
+          }, 
+        ],
+          labels: this.month
+      },
         options: {
           scales: {
             y: {
               beginAtZero: true,
-              max: 100
+              max: 500
             }
           }
         }

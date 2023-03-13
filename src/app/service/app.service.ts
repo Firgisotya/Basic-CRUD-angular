@@ -27,6 +27,23 @@ export class AppService {
     return this.http.delete(`${this.baseUrl}/users/${id}`)
   }
 
+  //Banks
+  getBank() {
+    return this.http.get(`${this.baseUrl}/bank`);
+  }
+  storeBank(data: any){
+    return this.http.post(`${this.baseUrl}/bank`, data)
+  }
+  getBankById(id: any){
+    return this.http.get(`${this.baseUrl}/bank/${id}`)
+  }
+  updateBank(id: any, data: any){
+    return this.http.put(`${this.baseUrl}/bank/${id}`, data)
+  }
+  deleteBank(id: any){
+    return this.http.delete(`${this.baseUrl}/bank/${id}`)
+  }
+
 
   //Brand
   getBrand() {
@@ -81,6 +98,40 @@ export class AppService {
     return this.http.delete(`${this.baseUrl}/product/${id}`)
   }
 
+  //Supplier
+  getSupplier() {
+    return this.http.get(`${this.baseUrl}/supplier`);
+  }
+  storeSupplier(data: any){
+    return this.http.post(`${this.baseUrl}/supplier`, data)
+  }
+  getSupplierById(id: any){
+    return this.http.get(`${this.baseUrl}/supplier/${id}`)
+  }
+  updateSupplier(id: any, data: any){
+    return this.http.put(`${this.baseUrl}/supplier/${id}`, data)
+  }
+  deleteSupplier(id: any){
+    return this.http.delete(`${this.baseUrl}/supplier/${id}`)
+  }
+
+
+  //supply
+  getSupply() {
+    return this.http.get(`${this.baseUrl}/supply`);
+  }
+  storeSupply(data: any){
+    return this.http.post(`${this.baseUrl}/supply`, data)
+  }
+  getSupplyById(id: any){
+    return this.http.get(`${this.baseUrl}/supply/${id}`)
+  }
+  updateSupply(id: any, data: any){
+    return this.http.put(`${this.baseUrl}/supply/${id}`, data)
+  }
+  deleteSupply(id: any){
+    return this.http.delete(`${this.baseUrl}/supply/${id}`)
+  }
 
 
   //Order
