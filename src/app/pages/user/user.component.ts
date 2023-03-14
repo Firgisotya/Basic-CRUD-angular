@@ -11,7 +11,7 @@ import { User } from 'src/app/model/User.model';
 export class UserComponent {
   constructor(private appService: AppService) { }
 
-    dt: User[] = [];
+    dt: any[] = [];
 
     ngOnInit(): void {
       this.appService.getUser().subscribe((res: any) => {

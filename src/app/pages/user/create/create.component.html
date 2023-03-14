@@ -28,12 +28,22 @@
                       <input type="text" class="form-control" formControlName="lastName" id="exampleFormControlInput1" placeholder="Input Last Name">
                     </div>
                     <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Username</label>
+                      <input type="text" class="form-control" formControlName="username" id="exampleFormControlInput1" placeholder="Input Username">
+                    </div>
+                    <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Email</label>
                       <input type="email" class="form-control" formControlName="email" id="exampleFormControlInput1" placeholder="Input Email">
                     </div>
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Bank</label>
-                      <input type="radio" class="form-control" formControlName="bank" id="exampleFormControlInput1" placeholder="Input Bank">
+                     <div class="d-flex">
+                      <div class="mx-3" *ngFor="let item of banks; index as i">
+                        <input type="radio" [value]="item.id" formControlName="bankId">
+                        <img src="http://localhost:5000/{{item.image }}" width="150px" height="100px">
+                      </div>
+                     </div>
+                      
                     </div>
                     <div class="mb-3">
                       <button class="btn btn-primary"

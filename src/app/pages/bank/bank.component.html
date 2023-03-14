@@ -1,0 +1,64 @@
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-6">
+                <h6>Bank table</h6>
+              </div>
+              <div class="col-6 text-end">
+                <a routerLink="create" class="btn btn-primary">
+                  <i class="fa-solid fa-plus"></i>
+                  Create Bank
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th>Bank Name</th>
+                    <th>Bank Image</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of bank">
+                    <td>
+                      <div class="d-flex px-2">
+                        <div>
+                        </div>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">{{ item.name }}</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                        <img src="http://localhost:5000/{{ item.image }}" width="200px" height="150px">
+                    </td>
+                    <td class="align-middle">
+                      <a routerLink="/bank/edit/{{ item.id }}" class="btn btn-warning" data-toggle="tooltip" data-original-title="Edit Bank">
+                        <i class="fa-solid fa-pencil"></i>
+                        Edit
+                      </a>
+  
+                      <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete Brand"
+                      (click)="deleteBank(item.id)">
+                        <i class="fa-solid fa-trash"></i>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

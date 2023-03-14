@@ -21,6 +21,7 @@
               <thead>
                 <tr>
                   <th>Username</th>
+                  <th>Bank</th>
                   <th>Email</th>
                   <th>Action</th>
                 </tr>
@@ -36,11 +37,14 @@
                       </div>
                     </div>
                   </td>
+                  <td>
+                    <img src="http://localhost:5000/{{ item.Bank.image }}" width="200px" height="150px">
+                  </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{ item.email }}</span>
                   </td>
                   <td class="align-middle">
-                    <a routerLink="/user/edit/{{ item.id }}}" class="btn btn-warning" data-toggle="tooltip" data-original-title="Edit User">
+                    <a routerLink="/user/edit/{{ item.id }}" class="btn btn-warning" data-toggle="tooltip" data-original-title="Edit User">
                       <i class="fa-solid fa-pencil"></i>
                       Edit
                     </a>

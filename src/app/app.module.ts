@@ -27,6 +27,15 @@ import { ShowProductComponent } from './pages/product/show/show.component';
 import { ShowTransaksiComponent } from './pages/transaksi/show/show.component';
 import { CreateUserComponent } from './pages/user/create/create.component';
 import { EditUserComponent } from './pages/user/edit/edit.component';
+import { SupplierComponent } from './pages/supplier/supplier.component';
+import { SupplyComponent } from './pages/supply/supply.component';
+import { BankComponent } from './pages/bank/bank.component';
+import { CreateBankComponent } from './pages/bank/create/create.component';
+import { EditBankComponent } from './pages/bank/edit/edit.component';
+import { CreateSupplyComponent } from './pages/supply/create/create.component';
+import { EditSupplyComponent } from './pages/supply/edit/edit.component';
+import { CreateSupplierComponent } from './pages/supplier/create/create.component';
+import { EditSupplierComponent } from './pages/supplier/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +60,17 @@ import { EditUserComponent } from './pages/user/edit/edit.component';
     ShowTransaksiComponent,
     UserComponent,
     CreateUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    BankComponent,
+    CreateBankComponent,
+    EditBankComponent,
+    SupplierComponent,
+    CreateSupplierComponent,
+    EditSupplierComponent,
+    SupplyComponent,
+    CreateSupplyComponent,
+    EditSupplyComponent,
+    
 
   ],
   imports: [

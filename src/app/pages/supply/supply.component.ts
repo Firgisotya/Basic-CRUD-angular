@@ -1,27 +1,25 @@
 import { Component } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
-import { Order } from 'src/app/model/Order.model';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-transaksi',
-  templateUrl: './transaksi.component.html',
-  styleUrls: ['./transaksi.component.css']
+  selector: 'app-supply',
+  templateUrl: './supply.component.html',
+  styleUrls: ['./supply.component.css']
 })
-export class TransaksiComponent {
-
+export class SupplyComponent {
   constructor(private appService: AppService) { }
 
-    dt: any[] = [];
+    dt: any = [];
 
     ngOnInit(): void {
-      this.appService.getOrder().subscribe((res: any) => {
-        this.dt = res.orders;
+      this.appService.getSupply().subscribe((res: any) => {
+        this.dt = res;
       });
     }
 
-    deleteTransaksi(id: number){
-      this.appService.deleteOrder(id).subscribe((res: any) => {
+    deleteSupply(id: number){
+      this.appService.deleteSupply(id).subscribe((res: any) => {
         this.dt = res.orders;
         this.dt.filter((item: any) => item.id !== id);
       })
@@ -31,5 +29,4 @@ export class TransaksiComponent {
     successAlert(){
     Swal.fire("Berhasil!", "Berhasil menghapus data transaksi!", "success")
   }
-
 }

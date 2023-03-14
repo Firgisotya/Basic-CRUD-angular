@@ -18,6 +18,15 @@ import { TransaksiComponent } from './pages/transaksi/transaksi.component';
 import { CreateUserComponent } from './pages/user/create/create.component';
 import { EditUserComponent } from './pages/user/edit/edit.component';
 import { UserComponent } from './pages/user/user.component';
+import { BankComponent } from './pages/bank/bank.component';
+import { CreateBankComponent } from './pages/bank/create/create.component';
+import { EditBankComponent } from './pages/bank/edit/edit.component';
+import { SupplierComponent } from './pages/supplier/supplier.component';
+import { CreateSupplierComponent } from './pages/supplier/create/create.component';
+import { EditSupplierComponent } from './pages/supplier/edit/edit.component';
+import { SupplyComponent } from './pages/supply/supply.component';
+import { CreateSupplyComponent } from './pages/supply/create/create.component';
+import { EditSupplyComponent } from './pages/supply/edit/edit.component';
 
 const routes: Routes = [
   { path:'', component: DashboardComponent },
@@ -38,6 +47,16 @@ const routes: Routes = [
   { path:'transaksi/create', component: CreateTransaksiComponent },
   { path:'transaksi/edit/:id', component: EditTransaksiComponent },
   { path:'transaksi/show/:id', component: ShowTransaksiComponent },
+  { path:'bank', component: BankComponent },
+  { path:'bank/create', component: CreateBankComponent },
+  { path:'bank/edit/:id', component: EditBankComponent },
+  { path:'supplier', component: SupplierComponent },
+  { path:'supplier/create', component: CreateSupplierComponent },
+  { path:'supplier/edit/:id', component: EditSupplierComponent },
+  { path:'supply', component: SupplyComponent },
+  { path:'supply/create', component: CreateSupplyComponent },
+  { path:'supply/edit/:id', component: EditSupplyComponent },
+  
 
 ];
 

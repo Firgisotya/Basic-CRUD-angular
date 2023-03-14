@@ -16,6 +16,7 @@ export class CreateUserComponent implements OnInit{
   form!: FormGroup;
 
   users: User[] = [];
+  banks: any = [];
 
   successAlert(){
     Swal.fire("Berhasil!", "Berhasil menambahkan data user baru!", "success")
@@ -24,14 +25,17 @@ export class CreateUserComponent implements OnInit{
 
   ngOnInit(): void {
     this.appService.getBank().subscribe((data: any) => {
-      this.users = data;
-      console.log(this.users)
+      this.banks = data.banks;
+      console.log(this.banks[0].image)
+
     })
 
    this.form = new FormGroup({
      firstName: new FormControl('', [Validators.required]),
      lastName: new FormControl('', [Validators.required]),
+     username: new FormControl('', [Validators.required]),
      email: new FormControl('', [Validators.required]),
+     bankId: new FormControl('', [Validators.required]),
 
    })
   }
