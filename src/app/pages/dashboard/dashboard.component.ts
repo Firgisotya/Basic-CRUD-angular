@@ -2,8 +2,34 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AppService } from 'src/app/service/app.service';
 import {Chart, registerables} from 'chart.js/auto';
-import { max } from 'moment';
+import { ViewChild } from "@angular/core";
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexPlotOptions,
+  ApexYAxis,
+  ApexAnnotations,
+  ApexFill,
+  ApexStroke,
+  ApexGrid
+} from "ng-apexcharts";
 
+export type ChartOptions = {
+  seriesBrand: ApexAxisChartSeries;
+  seriesCategory: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xbrand: any; //ApexXAxis;
+  xcategory: any;
+  annotations: ApexAnnotations;
+  fill: ApexFill;
+  stroke: ApexStroke;
+  grid: ApexGrid;
+};
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +38,15 @@ import { max } from 'moment';
 })
 export class DashboardComponent {
 
+  public chartOptions!: Partial<ChartOptions> | any;
+    
     constructor(private appService: AppService, private detect: ChangeDetectorRef) {
       const currentYear = new Date().getFullYear();
       for (let i = 2020; i <= currentYear; i++) {
         this.tahun_filter.push(i);
       }
     }
+   
 
     brand: any = [];
     category: any = [];
@@ -54,6 +83,16 @@ export class DashboardComponent {
     mnth: any = [];
     newMnth: any = [];
 
+    //filterbrand
+    fpb: any = [];
+    brandId: any = [];
+    jumfit: any = [];
+
+    //filtercategory
+    fpc: any = [];
+    categoryId: any = [];
+    jumfitc: any = [];
+
     //chart
     monthChart: any = [];
     chartByYear: any = [];
@@ -61,6 +100,7 @@ export class DashboardComponent {
     filter!: FormGroup;
 
     ngOnInit() {
+      this.filterProductChart();
       this.appService.getBrand().subscribe((data: any) => {
         this.brand = data.brands;
         this.sumBrand = this.brand.length;
@@ -141,9 +181,29 @@ export class DashboardComponent {
       this.filter = new FormGroup({
         month : new FormControl(''),
       })
+      
+      this.appService.filterProductBrand().subscribe((data: any) => {
+        this.fpb = data.query;
+        this.fpb.forEach((item: any) => {
+          this.brandId.push(item.name);
+          this.jumfit.push(item.jumlah);
+        })
+        
 
+        this.filterProductChart();
+      })
 
+      this.appService.filterProductCategory().subscribe((data: any) => {
+        this.fpc = data.query;
+        this.fpc.forEach((item: any) => {
+          this.categoryId.push(item.name);
+          this.jumfitc.push(item.jumlah);
+        })
+        console.log(this.categoryId);
+        console.log(this.jumfitc);
 
+        this.filterProductChart();
+      })
 
 
     };
@@ -170,6 +230,8 @@ export class DashboardComponent {
 
 
       })
+
+      
 
     }
 
@@ -279,7 +341,7 @@ export class DashboardComponent {
                 label: 'Target Order',
                 data: [2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000,2000000],
                 borderColor: [
-                  'rgba(255, 99, 132, 1)',
+                  'rgba(12, 192, 192, 1)',
                 ], 
                 fill: false,},
               {
@@ -325,7 +387,7 @@ export class DashboardComponent {
               label: 'Target Order',
               data: [300,300,300,300,300,300,300,300,300,300,300,300],
               borderColor: [
-                'rgba(255, 99, 132, 1)',
+                'rgba(12, 192, 192, 1)',
                 
               ],
               fill: false,
@@ -362,6 +424,94 @@ export class DashboardComponent {
           }
         }
       });
+    }
+
+    filterProductChart(){
+      this.chartOptions = {
+        seriesBrand: [
+          {
+            name: "Total",
+            data: this.jumfit
+          }
+        ],
+        seriesCategory: [
+          {
+            name: "Total",
+            data: this.jumfitc
+          }
+        ],
+        annotations: {
+          points: [
+            {
+              x: "Bananas",
+              seriesIndex: 0,
+              label: {
+                borderColor: "#775DD0",
+                offsetY: 0,
+                style: {
+                  color: "#fff",
+                  background: "#775DD0"
+                },
+                text: "Bananas are good"
+              }
+            }
+          ]
+        },
+        chart: {
+          height: 350,
+          type: "bar"
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: "50%",
+            endingShape: "rounded"
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 2
+        },
+  
+        grid: {
+          row: {
+            colors: ["#fff", "#f2f2f2"]
+          }
+        },
+        xbrand: {
+          labels: {
+            rotate: -45
+          },
+          categories: this.brandId,
+          tickPlacement: "on"
+        },
+        xcategory: {
+          labels: {
+            rotate: -45
+          },
+          categories: this.categoryId,
+          tickPlacement: "on"
+        },
+        yaxis: {
+          title: {
+            text: "Total"
+          }
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "light",
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100]
+          }
+        }
+      };
     }
 
   }

@@ -23,7 +23,7 @@
                     <th>Supplier Name</th>
                     <th>Product Name</th>
                     <th>Qty</th>
-                    <th>Total</th>
+                    <th>Tanggal</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -34,7 +34,7 @@
                         <div>
                         </div>
                         <div class="my-auto">
-                          <h6 class="mb-0 text-sm">{{ item.User.username }}</h6>
+                          <h6 class="mb-0 text-sm">{{ item.Supplier.username }}</h6>
                         </div>
                       </div>
                     </td>
@@ -42,13 +42,13 @@
                       <span class="text-secondary text-xs font-weight-bold">{{ item.Product.name }}</span>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ item.qty }}</span>
+                      <span class="text-secondary text-xs font-weight-bold">{{ item.jumlah }}</span>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ item.total }}</span>
+                      <span class="text-secondary text-xs font-weight-bold">{{ item.tanggal }}</span>
                     </td>
                     <td class="align-middle">
-                      <a routerLink="/transaksi/edit/{{ item.id }}" class="btn btn-warning" data-toggle="tooltip" data-original-title="Edit Transaksi">
+                      <a routerLink="/supply/edit/{{ item.id }}" class="btn btn-warning" data-toggle="tooltip" data-original-title="Edit Transaksi">
                         <i class="fa-solid fa-pencil"></i>
                         Edit
                       </a>

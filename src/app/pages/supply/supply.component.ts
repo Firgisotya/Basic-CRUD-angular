@@ -14,7 +14,8 @@ export class SupplyComponent {
 
     ngOnInit(): void {
       this.appService.getSupply().subscribe((res: any) => {
-        this.dt = res;
+        this.dt = res.supplies;
+        
       });
     }
 
@@ -22,6 +23,9 @@ export class SupplyComponent {
       this.appService.deleteSupply(id).subscribe((res: any) => {
         this.dt = res.orders;
         this.dt.filter((item: any) => item.id !== id);
+        this.appService.getSupply().subscribe((res: any) => {
+          this.dt = res.supplies;
+        })
       })
       this.successAlert();
     }

@@ -23,10 +23,15 @@
                         <label for="exampleFormControlInput1" class="form-label">Bank Name</label>
                         <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" [(ngModel)]="bank.name">
                       </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Bank Name</label>
+                        <input type="file" class="form-control" formControlName="image" id="exampleFormControlInput1" (change)="onFileChange($event)">
+                      </div>
+                        <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width: 400px;"  />
+                      
                       
                       <div class="mb-3">
-                        <button class="btn btn-primary"
-                        (click)="successAlert()">
+                        <button class="btn btn-primary">
                         Update
                       </button>
                       </div>

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -80,6 +81,7 @@ import { EditSupplierComponent } from './pages/supplier/edit/edit.component';
     FormsModule,
     ReactiveFormsModule,
     SweetAlert2Module,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

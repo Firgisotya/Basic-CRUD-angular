@@ -154,6 +154,12 @@ export class AppService {
   getQty(){
     return this.http.get(`${this.baseUrl}/transaksi/qty`);
   }
+  filterProductBrand(){
+  return this.http.get(`${this.baseUrl}/filterProduct/brand`);
+  }
+  filterProductCategory(){
+    return this.http.get(`${this.baseUrl}/filterProduct/category`);
+  }
   filterOrderByYear(year: any){
     console.log("service");
     console.log(year);
