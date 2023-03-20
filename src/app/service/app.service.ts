@@ -29,7 +29,10 @@ export class AppService {
 
   //Banks
   getBank() {
-    return this.http.get(`${this.baseUrl}/bank`);
+    return this.http.get(`${this.baseUrl}/bank/`);
+  }
+  getAllBank(){
+    return this.http.get(`http://localhost:5000/bank/`)
   }
   storeBank(data: any){
     return this.http.post(`${this.baseUrl}/bank`, data)

@@ -20,15 +20,34 @@ export class BankComponent {
     });
   }
 
-  deleteBank(id: number){
-    this.appService.deleteBank(id).subscribe((res: any) => {
-      this.bank = res.banks;
-      // this.bank.filter((item: any) => item.id !== id);
+  deleteBank(id: number): void  {
+      
+    this.appService.deleteBank(id).subscribe(() => {
+      this.bank = this.bank.filter((item: any) => item.id !== id);
       this.appService.getBank().subscribe((res: any) => {
         this.bank = res.banks;
       })
-    })
-    this.successAlert();
+      this.successAlert();
+    }, (err) => {
+      // tangani error menggunakan sweetalert jika data masih memiliki relasi dengan tabel lain
+      if (err.status === 400) {
+        Swal.fire('Error', 'Data has related records and cannot be deleted', 'error');
+      } else {
+        // tampilkan pesan error menggunakan sweetalert jika terjadi error lain
+        Swal.fire('Error', 'Failed to delete data', 'error');
+      }
+    }
+    )
+  
+
+    // this.appService.deleteBank(id).subscribe((res: any) => {
+    //   this.bank = res.banks;
+    //   this.bank.filter((item: any) => item.id !== id);
+    //   this.appService.getBank().subscribe((res: any) => {
+    //     this.bank = res.banks;
+    //   })
+    // })
+    // this.successAlert();
   }
 
   successAlert(){

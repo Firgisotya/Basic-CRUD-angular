@@ -23,11 +23,22 @@ export class ProductComponent {
     }
 
     deleteProduct(id: number){
-      this.appService.deleteProduct(id).subscribe((res: any) => {
-        this.dt = res.products;
-        this.dt.filter((item: any) => item.id !== id);
-      })
-      this.successAlert();
+      this.appService.deleteProduct(id).subscribe(() => {
+        this.dt = this.dt.filter((item: any) => item.id !== id);
+        this.appService.getProducts().subscribe((res: any) => {
+          this.dt = res.product;
+        })
+        this.successAlert();
+      }, (err) => {
+        // tangani error menggunakan sweetalert jika data masih memiliki relasi dengan tabel lain
+        if (err.status === 400) {
+          Swal.fire('Error', 'Data has related records and cannot be deleted', 'error');
+        } else {
+          // tampilkan pesan error menggunakan sweetalert jika terjadi error lain
+          Swal.fire('Error', 'Failed to delete data', 'error');
+        }
+      }
+      )
     }
 
     successAlert(){
